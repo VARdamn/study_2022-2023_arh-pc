@@ -1,6 +1,10 @@
 FILES = $(patsubst %.md, %.docx, $(wildcard *.md))
 FILES += $(patsubst %.md, %.pdf, $(wildcard *.md))
 
+LATEX_FORMAT = 
+
+FILTER = --filter pandoc-crossref
+
 FILTERS =
 OPTIONS =
 PDF_ENGINE =
@@ -14,12 +18,13 @@ BIB_OPTIONS = --citeproc
 
 
 %.docx: %.md
-	-pandoc "$<" $(FILTERS) $(OPTIONS) $(BIB_OPTIONS) -o "$@"
+	-pandoc "$<" $(FILTER) -o "$@"
 
 %.pdf: %.md
-	-pandoc "$<" $(FILTERS) $(PDF_ENGINE) $(PDF_OPTIONS) $(BIB_OPTIONS) $(FORMAT_OPTIONS) $(OPTIONS) -o "$@"
+	-pandoc "$<" $(LATEX_FORMAT) $(FILTER) -o "$@"
 
 all: $(FILES)
+	@echo $(FILES)
 
 
 clean:
