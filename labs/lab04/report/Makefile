@@ -11,11 +11,6 @@ PDF_ENGINE =
 PDF_OPTIONS =
 FORMAT_OPTIONS =
 
-FILTERS += -F pandoc-crossref
-PDF_ENGINE += --pdf-engine=lualatex --pdf-engine-opt=--shell-escape
-OPTIONS += --number-sections
-BIB_OPTIONS = --citeproc
-
 
 %.docx: %.md
 	-pandoc "$<" $(FILTER) -o "$@"
